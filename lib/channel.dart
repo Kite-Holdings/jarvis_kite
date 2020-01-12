@@ -1,3 +1,5 @@
+import 'package:jarvis/Sms/routes/sms_router.dart';
+
 import 'jarvis.dart';
 
 /// This type initializes an application.
@@ -33,6 +35,9 @@ class JarvisChannel extends ApplicationChannel {
       .linkFunction((request) async {
         return Response.ok({"key": "value"});
       });
+    
+    // Sms routes
+    smsRouter(router);
 
     return router;
   }

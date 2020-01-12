@@ -3,7 +3,7 @@ import 'package:jarvis/jarvis.dart';
 Future main() async {
   final app = Application<JarvisChannel>()
       ..options.configurationFilePath = "config.yaml"
-      ..options.port = 8888;
+      ..options.port = 2009;
 
   final count = Platform.numberOfProcessors ~/ 2;
   await app.start(numberOfInstances: count > 0 ? count : 1);
