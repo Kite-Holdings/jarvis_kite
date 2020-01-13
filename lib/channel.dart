@@ -1,3 +1,4 @@
+import 'package:jarvis/Applicatons/routes/applications_router.dart';
 import 'package:jarvis/Sms/routes/sms_router.dart';
 
 import 'jarvis.dart';
@@ -35,7 +36,9 @@ class JarvisChannel extends ApplicationChannel {
       .linkFunction((request) async {
         return Response.ok({"key": "value"});
       });
-    
+    // Applications
+    applicationsRouter(router);
+
     // Sms routes
     smsRouter(router);
 

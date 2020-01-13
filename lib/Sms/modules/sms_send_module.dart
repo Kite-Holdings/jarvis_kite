@@ -8,7 +8,7 @@ class SmsSendModule{
   final String phoneNo;
   final String message;
 
-  Future<bool> send() async{
+  Future<Map<String, dynamic>> send() async{
     const String username = infobipUsername;
     const String password = infobipPassword;
     final _base64E = base64Encode(utf8.encode('$username:$password'));
@@ -20,9 +20,20 @@ class SmsSendModule{
       "from": infobipPhoneNo,
       "to": phoneNo,
     };
-    final http.Response _res = await http.post(_url, body: _body, headers: <String, String>{'authorization': basicAuth});
-    final bool _success = _res.statusCode == 200;
-    return _success;
+    try{
+      final http.Response _res = await http.post(_url, body: _body, headers: <String, String>{'authorization': basicAuth});
+      final bool _success = _res.statusCode == 200;
+      return {
+        'success': _success,
+        'body': _res.body,
+        'statusCode': _res.statusCode
+      };
+    } catch (e){
+      return {
+        'success': false,
+        'body': 'Cannot reach endpoint'
+      };
+    }
   }
   
 }
